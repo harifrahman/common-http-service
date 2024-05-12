@@ -17,10 +17,12 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
     implementation "com.sparkjava:spark-core:2.9.4"
+
+    // lombok: https://projectlombok.org/features/
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
