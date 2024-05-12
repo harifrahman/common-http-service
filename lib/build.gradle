@@ -23,6 +23,9 @@ dependencies {
     // lombok: https://projectlombok.org/features/
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    // gson
+    implementation 'com.google.code.gson:gson:2.8.8'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
