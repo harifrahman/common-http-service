@@ -10,5 +10,3 @@ classes/
 *.log
 *.iml
 .vscode/
-.project
-.settings/
