@@ -1,13 +1,16 @@
 package common.http.service;
 
 import common.http.service.controllers.HeroesController;
+import common.http.service.services.HeroesService;
+
+import java.util.Collections;
 
 import static spark.Spark.*;
 
 public class Server {
 
     public static void main(String[] args) {
-        HeroesController heroesController = new HeroesController();
+        HeroesController heroesController = new HeroesController(new HeroesService(Collections.emptyList()));
         port(8080);
 
         initExceptionHandler((e) -> System.out.println("Something wruung.." + e.getMessage()));
