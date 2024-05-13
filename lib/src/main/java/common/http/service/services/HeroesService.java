@@ -3,6 +3,7 @@ package common.http.service.services;
 import common.http.service.models.Heroes;
 
 import java.util.List;
+import java.util.Optional;
 
 public class HeroesService {
     private final List<Heroes> heroes;
@@ -12,34 +13,14 @@ public class HeroesService {
     }
 
     public List<Heroes> fetchAll() {
-        Heroes lion = Heroes.builder()
-                .withId(1)
-                .withName("lion")
-                .withFaction("dire")
-                .withAttackType("ranged")
-                .withPrimaryAttribute("int")
-                .build();
-
-        Heroes medusa = Heroes.builder()
-                .withId(1)
-                .withName("medusa")
-                .withFaction("dire")
-                .withAttackType("ranged")
-                .withPrimaryAttribute("agi")
-                .build();
-
-        return List.of(lion, medusa);
+        return heroes;
     }
 
-    public List<Heroes> fetchOneByIndex(int index) {
-        Heroes lion = Heroes.builder()
-                .withId(index)
-                .withName("lion")
-                .withFaction("dire")
-                .withAttackType("ranged")
-                .withPrimaryAttribute("int")
-                .build();
-
-        return List.of(lion);
+    public Optional<Heroes> fetchOneByIndex(int index) {
+        try {
+            return Optional.ofNullable(heroes.get(index));
+        } catch (IndexOutOfBoundsException exception) {
+            return Optional.empty();
+        }
     }
 }

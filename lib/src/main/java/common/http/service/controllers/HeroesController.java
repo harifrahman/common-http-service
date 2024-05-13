@@ -7,6 +7,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.List;
+import java.util.Optional;
 
 public class HeroesController {
     HeroesService heroesService;
@@ -21,10 +22,16 @@ public class HeroesController {
         return heroesService.fetchAll();
     }
 
-    public List<Heroes> getByIndex(Request request, Response response) {
-        response.status(HttpStatus.OK_200);
+    public Heroes getByIndex(Request request, Response response) {
         int index = Integer.parseInt(request.params(":id"));
+        Optional<Heroes> hero = heroesService.fetchOneByIndex(index);
+        if (hero.isEmpty()) {
+            response.status(HttpStatus.NOT_FOUND_404);
+            return Heroes.builder().build();
+        }
 
-        return heroesService.fetchOneByIndex(index);
+        response.status(HttpStatus.OK_200);
+
+        return hero.get();
     }
 }

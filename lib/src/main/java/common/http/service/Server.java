@@ -2,18 +2,36 @@ package common.http.service;
 
 import common.http.service.controllers.HeroesController;
 import common.http.service.controllers.JsonTransformer;
+import common.http.service.models.Heroes;
 import common.http.service.services.HeroesService;
 
-import java.util.Collections;
+import java.util.List;
 
 import static spark.Spark.*;
 
 public class Server {
+    private static final int PORT = 8080;
 
     public static void main(String[] args) {
-        HeroesController heroesController = new HeroesController(new HeroesService(Collections.emptyList()));
+        Heroes lion = Heroes.builder()
+                .withId(1)
+                .withName("lion")
+                .withFaction("dire")
+                .withAttackType("ranged")
+                .withPrimaryAttribute("int")
+                .build();
+
+        Heroes medusa = Heroes.builder()
+                .withId(2)
+                .withName("medusa")
+                .withFaction("dire")
+                .withAttackType("ranged")
+                .withPrimaryAttribute("agi")
+                .build();
+
+        HeroesController heroesController = new HeroesController(new HeroesService(List.of(lion, medusa)));
         JsonTransformer jsonTransformer = new JsonTransformer();
-        port(8080);
+        port(PORT);
 
         initExceptionHandler((e) -> System.out.println("Something wruung.." + e.getMessage()));
         get("/ping", (req, res) -> "pong");
