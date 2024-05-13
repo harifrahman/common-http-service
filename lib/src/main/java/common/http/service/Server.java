@@ -13,23 +13,7 @@ public class Server {
     private static final int PORT = 8080;
 
     public static void main(String[] args) {
-        Heroes lion = Heroes.builder()
-                .withId(1)
-                .withName("lion")
-                .withFaction("dire")
-                .withAttackType("ranged")
-                .withPrimaryAttribute("int")
-                .build();
-
-        Heroes medusa = Heroes.builder()
-                .withId(2)
-                .withName("medusa")
-                .withFaction("dire")
-                .withAttackType("ranged")
-                .withPrimaryAttribute("agi")
-                .build();
-
-        HeroesController heroesController = new HeroesController(new HeroesService(List.of(lion, medusa)));
+        HeroesController heroesController = new HeroesController(new HeroesService(Heroes.summonEarlyHeroes()));
         JsonTransformer jsonTransformer = new JsonTransformer();
         port(PORT);
 

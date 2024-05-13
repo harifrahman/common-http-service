@@ -27,7 +27,7 @@ public class HeroesController {
         Optional<Heroes> hero = heroesService.fetchOneByIndex(index);
         if (hero.isEmpty()) {
             response.status(HttpStatus.NOT_FOUND_404);
-            return Heroes.builder().build();
+            return Heroes.notFound();
         }
 
         response.status(HttpStatus.OK_200);
