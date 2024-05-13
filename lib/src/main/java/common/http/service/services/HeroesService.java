@@ -18,7 +18,7 @@ public class HeroesService {
 
     public Optional<Heroes> fetchOneByIndex(int index) {
         try {
-            return Optional.ofNullable(heroes.get(index));
+            return Optional.ofNullable(heroes.get(index - 1));
         } catch (IndexOutOfBoundsException exception) {
             return Optional.empty();
         }
