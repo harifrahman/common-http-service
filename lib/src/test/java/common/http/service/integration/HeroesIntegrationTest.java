@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HeroesIntegrationTest {
     @BeforeAll
     static void beginServing() {
-        Spark.port(8080); // this must same with port we select to run our app
         Server.main(null);
     }
 
