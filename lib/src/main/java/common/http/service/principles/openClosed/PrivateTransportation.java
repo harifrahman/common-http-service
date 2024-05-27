@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class PrivateTransportation extends Transportation{
+public class PrivateTransportation extends Transportation {
     Owner ownerInfo;
 
     @Builder
